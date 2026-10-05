@@ -1,0 +1,49 @@
+:root {
+  --ink: #0f2a3a;
+  --muted: #5b6b77;
+  --paper: #f6f8f9;
+  --line: #d5dde2;
+  --danger: #b3261e;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+*, *::before, *::after { box-sizing: inherit; }
+html, body, #root { height: 100%; margin: 0; }
+
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "head head" "map side";
+}
+header { grid-area: head; padding: 12px 20px; border-bottom: 1px solid var(--line); background: #fff; }
+header h1 { margin: 0; font-size: 1.15rem; }
+header p { margin: 2px 0 0; font-size: 0.85rem; color: var(--muted); }
+main { grid-area: map; position: relative; min-height: 0; }
+.map { position: absolute; inset: 0; }
+aside { grid-area: side; padding: 16px 20px; overflow-y: auto; border-left: 1px solid var(--line); background: #fff; }
+aside h2 { font-size: 0.95rem; margin: 20px 0 8px; }
+.total { margin: 0; font-size: 1.05rem; font-weight: 600; }
+.hint, .error { margin: 12px 16px; font-size: 0.9rem; color: var(--muted); }
+aside .hint { margin: 0; }
+.error { color: var(--danger); }
+
+.legend { list-style: none; margin: 0; padding: 0; }
+.legend li { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 8px; padding: 4px 0; font-size: 0.9rem; }
+.swatch { height: 6px; border-radius: 3px; }
+.swatch.unknown { background: none; height: 0; border-top: 3px dashed; border-radius: 0; }
+.count { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.detail { display: grid; grid-template-columns: 90px 1fr; gap: 6px 8px; margin: 0; font-size: 0.9rem; }
+.detail dt { color: var(--muted); }
+.detail dd { margin: 0; }
+.missing { color: var(--danger); font-style: italic; }
+
+/* US-40 (groundwork): stack the panel under the map on narrow screens */
+@media (max-width: 760px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: auto 1fr 40%; grid-template-areas: "head" "map" "side"; }
+  aside { border-left: 0; border-top: 1px solid var(--line); }
+}
