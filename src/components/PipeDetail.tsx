@@ -2,11 +2,19 @@
 import type { PipeFeature } from "../types";
 
 const MATERIAL_LABEL: Record<string, string> = {
-  cast_iron: "Cast iron", asbestos_cement: "Asbestos cement", steel: "Steel", pvc: "PVC", pe: "PE",
+  cast_iron: "Cast iron",
+  asbestos_cement: "Asbestos cement",
+  steel: "Steel",
+  pvc: "PVC",
+  pe: "PE",
 };
 
 function Value({ value }: { value: string | number | null }) {
-  return value === null || value === "" ? <span className="missing">missing</span> : <>{value}</>;
+  return value === null || value === "" ? (
+    <span className="missing">missing</span>
+  ) : (
+    <>{value}</>
+  );
 }
 
 export function PipeDetail({ feature }: { feature: PipeFeature | null }) {
@@ -23,13 +31,32 @@ export function PipeDetail({ feature }: { feature: PipeFeature | null }) {
     <section aria-labelledby="detail-title">
       <h2 id="detail-title">Pipe details</h2>
       <dl className="detail">
-        <dt>ID</dt><dd><Value value={p.id} /></dd>
-        <dt>Material</dt><dd><Value value={p.material && (MATERIAL_LABEL[p.material] ?? p.material)} /></dd>
-        <dt>Installed</dt><dd><Value value={p.installYear} /></dd>
-        <dt>Diameter</dt><dd><Value value={p.diameterMm ? `${p.diameterMm} mm` : null} /></dd>
-        <dt>Condition</dt><dd><Value value={p.condition} /></dd>
-        <dt>Length</dt><dd>{p.lengthM} m</dd>
-        <dt>Street class</dt><dd>{p.streetClass}</dd>
+        <dt>ID</dt>
+        <dd>
+          <Value value={p.id} />
+        </dd>
+        <dt>Material</dt>
+        <dd>
+          <Value
+            value={p.material && (MATERIAL_LABEL[p.material] ?? p.material)}
+          />
+        </dd>
+        <dt>Installed</dt>
+        <dd>
+          <Value value={p.installYear} />
+        </dd>
+        <dt>Diameter</dt>
+        <dd>
+          <Value value={p.diameterMm ? `${p.diameterMm} mm` : null} />
+        </dd>
+        <dt>Condition</dt>
+        <dd>
+          <Value value={p.condition} />
+        </dd>
+        <dt>Length</dt>
+        <dd>{p.lengthM} m</dd>
+        <dt>Street class</dt>
+        <dd>{p.streetClass}</dd>
       </dl>
     </section>
   );

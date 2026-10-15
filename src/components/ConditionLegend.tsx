@@ -3,7 +3,8 @@ import { CONDITION_SCALE, UNKNOWN_COLOR } from "../condition";
 import type { PipeFeature } from "../types";
 
 export function ConditionLegend({ features }: { features: PipeFeature[] }) {
-  const count = (score: number | null) => features.filter((f) => f.properties.condition === score).length;
+  const count = (score: number | null) =>
+    features.filter((f) => f.properties.condition === score).length;
   return (
     <section aria-labelledby="legend-title">
       <h2 id="legend-title">Condition</h2>
@@ -16,7 +17,10 @@ export function ConditionLegend({ features }: { features: PipeFeature[] }) {
           </li>
         ))}
         <li>
-          <span className="swatch unknown" style={{ borderColor: UNKNOWN_COLOR }} />
+          <span
+            className="swatch unknown"
+            style={{ borderColor: UNKNOWN_COLOR }}
+          />
           <span>Not scored</span>
           <span className="count">{count(null)}</span>
         </li>
